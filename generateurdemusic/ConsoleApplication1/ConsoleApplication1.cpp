@@ -1,4 +1,4 @@
-#include <SDL.h>
+#include <SDL2.dll>
 #include <iostream>
 
 int main(int argc, char* argv[]) {
@@ -14,7 +14,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    SDL_Delay(3000); // Wait for 3 seconds
+    SDL_Delay(3000); // attend 3 secondes
 
     SDL_DestroyWindow(window);
     SDL_Quit();
