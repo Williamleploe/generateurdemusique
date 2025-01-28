@@ -1,6 +1,3 @@
-//#ifndef XYLOPHONE_H
-//#define XYLOPHONE_H
-//
 //#include "Instrument.h"
 //
 //// Classe dérivée : Xylophone

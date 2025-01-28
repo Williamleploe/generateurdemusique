@@ -5,84 +5,85 @@
 #include <vector>
 #include <string>
 #include <algorithm>
-#include <thread> // For sleep
-#include <chrono> // For duration
+#include <thread> // Pour le délai
+#include <chrono> // Pour la durée
 
-// Structure to represent a musical note and its duration
+// Structure représentant une note musicale et sa durée
 struct Note {
-    std::string key;
-    double duration; // Duration in seconds
+    std::string key;  // La touche correspondant à la note
+    double duration;  // La durée de la note en secondes
 };
 
-// Function to load WAV sound files
+// Fonction pour charger un fichier son WAV
 Mix_Chunk* loadSound(const std::string& file) {
     Mix_Chunk* chunk = Mix_LoadWAV(file.c_str());
     if (!chunk) {
-        std::cerr << "Failed to load " << file << ": " << Mix_GetError() << std::endl;
+        std::cerr << "Échec du chargement de " << file << ": " << Mix_GetError() << std::endl;
     }
     return chunk;
 }
 
-// Function to play a note corresponding to a key press
+// Fonction pour jouer une note correspondant à une touche pressée
 void playNote(const std::map<std::string, Mix_Chunk*>& notes, const std::string& key) {
     auto it = notes.find(key);
     if (it != notes.end()) {
         int channel = Mix_PlayChannel(-1, it->second, 0);
         if (channel == -1) {
-            std::cerr << "Error playing sound: " << Mix_GetError() << std::endl;
+            std::cerr << "Erreur lors de la lecture du son: " << Mix_GetError() << std::endl;
         }
     }
     else {
-        std::cerr << "Note for key '" << key << "' not found!" << std::endl;
+        std::cerr << "Note pour la touche '" << key << "' introuvable !" << std::endl;
     }
 }
 
-// Function to play a melody
+// Fonction pour jouer une mélodie
 void playMelody(const std::vector<Note>& melody, const std::map<std::string, Mix_Chunk*>& notes) {
     for (const auto& note : melody) {
-        if (note.key != "0") { // Skip rests
+        if (note.key != "0") { // Ignorer les silences
             playNote(notes, note.key);
         }
-        std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(note.duration * 1000)));
+        std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(note.duration * 1000))); // Attendre la durée de la note
     }
 }
 
 int main(int argc, char* argv[]) {
-    // Initialize SDL
+    // Initialisation de SDL
     if (SDL_Init(SDL_INIT_AUDIO | SDL_INIT_EVENTS) < 0) {
-        std::cerr << "Failed to initialize SDL: " << SDL_GetError() << std::endl;
+        std::cerr << "Échec de l'initialisation de SDL: " << SDL_GetError() << std::endl;
         return -1;
     }
 
-    // Create a window to capture keyboard input
-    SDL_Window* window = SDL_CreateWindow("SDL Music Notes", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_SHOWN);
+    // Création d'une fenêtre pour capter les entrées clavier
+    SDL_Window* window = SDL_CreateWindow("SDL Notes de musique", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_SHOWN);
     if (!window) {
-        std::cerr << "Failed to create window: " << SDL_GetError() << std::endl;
+        std::cerr << "Échec de la création de la fenêtre: " << SDL_GetError() << std::endl;
         SDL_Quit();
         return -1;
     }
 
-    // Initialize SDL_mixer with desired audio settings
+    // Initialisation de SDL_mixer avec les paramètres audio désirés
     if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
-        std::cerr << "Failed to initialize SDL_mixer: " << Mix_GetError() << std::endl;
+        std::cerr << "Échec de l'initialisation de SDL_mixer: " << Mix_GetError() << std::endl;
         SDL_DestroyWindow(window);
         SDL_Quit();
         return -1;
     }
 
-    Mix_AllocateChannels(128);
-    // Load sound files for notes
-    std::map<std::string, Mix_Chunk*> notes;
-    notes["A"] = loadSound("C:\\piano\\C.wav");
-    notes["Z"] = loadSound("C:\\piano\\D.wav");
-    notes["E"] = loadSound("C:\\piano\\E.wav");
-    notes["R"] = loadSound("C:\\piano\\F.wav");
-    notes["T"] = loadSound("C:\\piano\\G.wav");
-    notes["Y"] = loadSound("C:\\piano\\A.wav");
-    notes["U"] = loadSound("C:\\piano\\B.wav");
-    notes["I"] = loadSound("C:\\piano\\C1.wav");
+    Mix_AllocateChannels(128); // Allouer plus de canaux audio
 
-    // Define the melody
+    // Chargement des fichiers audio pour les notes
+    std::map<std::string, Mix_Chunk*> notes;
+    notes["A"] = loadSound("C:\\guitare\\C.wav");
+    notes["Z"] = loadSound("C:\\guitare\\D.wav");
+    notes["E"] = loadSound("C:\\guitare\\E.wav");
+    notes["R"] = loadSound("C:\\guitare\\F.wav");
+    notes["T"] = loadSound("C:\\guitare\\G.wav");
+    notes["Y"] = loadSound("C:\\guitare\\A.wav");
+    notes["U"] = loadSound("C:\\guitare\\B.wav");
+    notes["I"] = loadSound("C:\\guitare\\C1.wav");
+
+    // Définition de la mélodie à jouer
     std::vector<Note> melody = {
         {"E7", 0.083}, {"0", 0.083}, {"E7", 0.083}, {"0", 0.083}, {"0", 0.083},
         {"0", 0.083}, {"E7", 0.083}, {"0", 0.083}, {"0", 0.083}, {"0", 0.083},
@@ -98,6 +99,7 @@ int main(int argc, char* argv[]) {
         {"0", 0.100}, {"B6", 0.111}
     };
 
+    // Chargement des fichiers de la mélodie
     std::map<std::string, Mix_Chunk*> melodyNotes;
     melodyNotes["E7"] = loadSound("C:\\piano\\E7.wav");
     melodyNotes["C7"] = loadSound("C:\\piano\\C7.wav");
@@ -110,12 +112,12 @@ int main(int argc, char* argv[]) {
     melodyNotes["A#6"] = loadSound("C:\\piano\\A#6.wav");
     melodyNotes["D7"] = loadSound("C:\\piano\\D7.wav");
 
-    // Play the melody at the start
-    std::cout << "Playing the melody...\n";
+    // Jouer la mélodie au démarrage
+    std::cout << "Jouer la mélodie...\n";
     playMelody(melody, notes);
 
-    // Interactive mode: User can play notes
-    std::cout << "Press keys A, Z, E, R, T, Y, U, I to play notes. Press Q to quit.\n";
+    // Mode interactif : L'utilisateur peut jouer des notes
+    std::cout << "Appuyez sur les touches A, Z, E, R, T, Y, U, I pour jouer des notes. Appuyez sur Q pour quitter.\n";
     bool running = true;
     SDL_Event event;
     while (running) {
@@ -131,29 +133,24 @@ int main(int argc, char* argv[]) {
                     running = false;
                 }
                 else {
-                    playNote(notes, key);
+                    playNote(notes, key); // Joue la note si la touche correspond
                 }
             }
         }
     }
 
-    // Free the loaded sound files
+    // Libérer les fichiers sonores chargés
     for (auto& pair : notes) {
         Mix_FreeChunk(pair.second);
     }
 
-    // Close SDL
+    // Fermer SDL
     Mix_CloseAudio();
     SDL_DestroyWindow(window);
     SDL_Quit();
 
     return 0;
 }
-
-
-
-
-
 
 
 

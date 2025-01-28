@@ -138,7 +138,8 @@
     <ClCompile Include="tetspourthememario.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="instruments.h" />
+    <ClInclude Include="guitare.h" />
+    <ClInclude Include="instruments.cpp" />
     <ClInclude Include="partition.h" />
     <ClInclude Include="Piano.h" />
     <ClInclude Include="xylophone.h" />
