@@ -70,16 +70,17 @@ int main(int argc, char* argv[]) {
         return -1;
     }
 
+    Mix_AllocateChannels(128);
     // Load sound files for notes
     std::map<std::string, Mix_Chunk*> notes;
-    notes["A"] = loadSound("C:\\sounds\\C.wav");
-    notes["Z"] = loadSound("C:\\sounds\\D.wav");
-    notes["E"] = loadSound("C:\\sounds\\E.wav");
-    notes["R"] = loadSound("C:\\sounds\\F.wav");
-    notes["T"] = loadSound("C:\\sounds\\G.wav");
-    notes["Y"] = loadSound("C:\\sounds\\A.wav");
-    notes["U"] = loadSound("C:\\sounds\\B.wav");
-    notes["I"] = loadSound("C:\\sounds\\C1.wav");
+    notes["A"] = loadSound("C:\\piano\\C.wav");
+    notes["Z"] = loadSound("C:\\piano\\D.wav");
+    notes["E"] = loadSound("C:\\piano\\E.wav");
+    notes["R"] = loadSound("C:\\piano\\F.wav");
+    notes["T"] = loadSound("C:\\piano\\G.wav");
+    notes["Y"] = loadSound("C:\\piano\\A.wav");
+    notes["U"] = loadSound("C:\\piano\\B.wav");
+    notes["I"] = loadSound("C:\\piano\\C1.wav");
 
     // Define the melody
     std::vector<Note> melody = {
@@ -98,16 +99,16 @@ int main(int argc, char* argv[]) {
     };
 
     std::map<std::string, Mix_Chunk*> melodyNotes;
-    melodyNotes["E7"] = loadSound("C:\\sounds\\E7.wav");
-    melodyNotes["C7"] = loadSound("C:\\sounds\\C7.wav");
-    melodyNotes["G7"] = loadSound("C:\\sounds\\G7.wav");
-    melodyNotes["G6"] = loadSound("C:\\sounds\\G6.wav");
-    melodyNotes["C7"] = loadSound("C:\\sounds\\C7.wav");
-    melodyNotes["E6"] = loadSound("C:\\sounds\\E6.wav");
-    melodyNotes["A6"] = loadSound("C:\\sounds\\A6.wav");
-    melodyNotes["B6"] = loadSound("C:\\sounds\\B6.wav");
-    melodyNotes["A#6"] = loadSound("C:\\sounds\\A#6.wav");
-    melodyNotes["D7"] = loadSound("C:\\sounds\\D7.wav");
+    melodyNotes["E7"] = loadSound("C:\\piano\\E7.wav");
+    melodyNotes["C7"] = loadSound("C:\\piano\\C7.wav");
+    melodyNotes["G7"] = loadSound("C:\\piano\\G7.wav");
+    melodyNotes["G6"] = loadSound("C:\\piano\\G6.wav");
+    melodyNotes["C7"] = loadSound("C:\\piano\\C7.wav");
+    melodyNotes["E6"] = loadSound("C:\\piano\\E6.wav");
+    melodyNotes["A6"] = loadSound("C:\\piano\\A6.wav");
+    melodyNotes["B6"] = loadSound("C:\\piano\\B6.wav");
+    melodyNotes["A#6"] = loadSound("C:\\piano\\A#6.wav");
+    melodyNotes["D7"] = loadSound("C:\\piano\\D7.wav");
 
     // Play the melody at the start
     std::cout << "Playing the melody...\n";
@@ -148,6 +149,7 @@ int main(int argc, char* argv[]) {
 
     return 0;
 }
+
 
 
 
