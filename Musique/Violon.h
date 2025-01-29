@@ -1,14 +1,15 @@
-#ifndef GUITARE_H
-#define GUITARE_H
+#ifndef VIOLON_H
+#define VIOLON_H
 
 #include "Instrument.h"
+
 using namespace std;
 
-class Guitare : public Instrument {
+class Violon : public Instrument {
 public:
-    Guitare();
+    Violon();
     void chargerNotes() override;
     void jouerNote(const string& note) override;
 };
 
-#endif // GUITARE_H
+#endif // VIOLON_H

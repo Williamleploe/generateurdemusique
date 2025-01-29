@@ -71,7 +71,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>.\sdl\SDL2-2.30.11\include;.\sdl2\SDL2_mixer-2.8.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\generateurdemusiquefinale\Musique\piano;.\sdl\SDL2-2.30.11\include;.\sdl2\SDL2_mixer-2.8.0\include;$(IncludePath)</IncludePath>
     <LibraryPath>.\sdl\SDL2-2.30.11\lib\x86;.\sdl2\SDL2_mixer-2.8.0\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -133,16 +133,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Guitare.cpp" />
     <ClCompile Include="Jouer des notes.cpp" />
-    <ClCompile Include="Musicalau.cpp" />
-    <ClCompile Include="tetspourthememario.cpp" />
+    <ClCompile Include="Piano.cpp" />
+    <ClCompile Include="Violon.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="guitare.h" />
-    <ClInclude Include="instruments.cpp" />
-    <ClInclude Include="partition.h" />
+    <ClInclude Include="Guitare.h" />
+    <ClInclude Include="Instrument.cpp" />
+    <ClInclude Include="Instrument.h" />
     <ClInclude Include="Piano.h" />
-    <ClInclude Include="xylophone.h" />
+    <ClInclude Include="Violon.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
