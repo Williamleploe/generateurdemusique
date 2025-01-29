@@ -133,17 +133,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Guitare.cpp" />
     <ClCompile Include="Jouer des notes.cpp" />
-    <ClCompile Include="Piano.cpp" />
-    <ClCompile Include="Violon.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Guitare.h" />
-    <ClInclude Include="Instrument.cpp" />
-    <ClInclude Include="Instrument.h" />
-    <ClInclude Include="Piano.h" />
-    <ClInclude Include="Violon.h" />
+    <ClCompile Include="partition.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
