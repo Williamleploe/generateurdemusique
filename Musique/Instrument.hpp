@@ -24,7 +24,7 @@ public:
     };
 
 protected:
-    std::map<string, Mix_Chunk*> sounds;
+    map<string, Mix_Chunk*> sounds;
 };
 
 #endif
