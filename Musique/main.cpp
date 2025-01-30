@@ -123,7 +123,7 @@ int main() {
 
             if (mode == 1) {
                 double vitesseLecture;
-                cout << "Choisissez la vitesse de lecture (1.0 pour normal, < 1 pour plus lent, > 1 pour plus rapide, 0 pour revenir au menu) : ";
+                cout << "Choisissez la vitesse de lecture (1.0 pour normal, > 1 pour plus lent, < 1 pour plus rapide, 0 pour revenir au menu) : ";
                 cin >> vitesseLecture;
 
                 if (vitesseLecture == 0) {
