@@ -133,13 +133,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Jouer des notes.cpp" />
-    <ClCompile Include="partition.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include=".gitignore" />
     <None Include="SDL2.dll" />
     <None Include="SDL2_mixer.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Guitare.cpp" />
+    <ClCompile Include="Instrument.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Melody.cpp" />
+    <ClCompile Include="Piano.cpp" />
+    <ClCompile Include="Violon.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Guitare.hpp" />
+    <ClInclude Include="Instrument.hpp" />
+    <ClInclude Include="Melody.hpp" />
+    <ClInclude Include="Note.hpp" />
+    <ClInclude Include="Piano.hpp" />
+    <ClInclude Include="Violon.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
