@@ -2,10 +2,10 @@
 #include <SDL_mixer.h>
 
 Guitare::~Guitare() {
-    // Libérer les sons spécifiques à la guitare
+    // Liberer les sons specifiques a la guitare
     for (auto& pair : sounds) {
         if (pair.second) {
-            Mix_FreeChunk(pair.second);  // Libère chaque son chargé
+            Mix_FreeChunk(pair.second);  // Liberer chaque son charge
         }
     }
     sounds.clear();  // Vide la map des sons
@@ -13,7 +13,7 @@ Guitare::~Guitare() {
 
 
 void Guitare::loadSounds() {
-    // Chargement des sons pour chaque note spécifique à la guitare
+    // Chargement des sons pour chaque note specifique a la guitare
     sounds["C"] = Mix_LoadWAV("guitare/C.wav");
     sounds["D"] = Mix_LoadWAV("guitare/D.wav");
     sounds["E"] = Mix_LoadWAV("guitare/E.wav");
@@ -36,7 +36,7 @@ void Guitare::loadSounds() {
 }
 
 void Guitare::playNote(const string& note) {
-    // Vérifier si la note existe dans la map et la jouer
+    // Verifier si la note existe dans la map et la jouer
     if (sounds.find(note) != sounds.end()) {
         Mix_PlayChannel(-1, sounds[note], 0);
     }

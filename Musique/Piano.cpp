@@ -2,11 +2,11 @@
 #include "SDL_mixer.h"
 
 Piano::Piano() {
-    loadSounds();  // Charge les sons au moment de la création de l'objet
+    loadSounds();  // Charge les sons au moment de la creation de l'objet
 }
 
 Piano::~Piano() {
-    // Libérer les ressources allouées si nécessaire
+    // Liberer les ressources allouees si necessaire
     for (auto& pair : sounds) {
         Mix_FreeChunk(pair.second);
     }

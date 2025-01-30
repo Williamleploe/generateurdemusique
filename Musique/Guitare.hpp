@@ -7,8 +7,6 @@ using namespace std;
 class Guitare : public Instrument {
 public:
     Guitare() = default;
-
-    // Implémentation des méthodes spécifiques à la guitare
     void loadSounds() override;
     void playNote(const string& note) override;
 

@@ -2,7 +2,7 @@
 #include <SDL_mixer.h>
 
 void Violon::loadSounds() {
-    // Chargement des sons pour chaque note spécifique au violon
+    // Chargement des sons pour chaque note specifique au violon
     sounds["C"] = Mix_LoadWAV("violon/C.wav");
     sounds["D"] = Mix_LoadWAV("violon/D.wav");
     sounds["E"] = Mix_LoadWAV("violon/E.wav");
@@ -25,7 +25,7 @@ void Violon::loadSounds() {
 }
 
 void Violon::playNote(const string& note) {
-    // Vérifie si la note est présente dans la map des sons et la joue
+    // Verifie si la note est presente dans la map des sons et la joue
     if (sounds.find(note) != sounds.end()) {
         Mix_PlayChannel(-1, sounds[note], 0);
     }

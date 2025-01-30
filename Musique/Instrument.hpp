@@ -17,10 +17,10 @@ public:
     virtual void playNote(const string& note) = 0;
 
 
-    virtual ~Instrument();  
+    virtual ~Instrument();
 
     bool isSoundLoaded(const string& note) const {
-        return sounds.find(note) != sounds.end(); 
+        return sounds.find(note) != sounds.end();
     };
 
 protected:

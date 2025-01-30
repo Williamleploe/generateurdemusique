@@ -6,8 +6,8 @@ using namespace std;
 class Piano : public Instrument {
 public:
     Piano();
-    // Déclaration du destructeur, mais sans corps
-    virtual ~Piano();  // Pas de définition ici
+    // Declaration du destructeur, mais sans corps
+    virtual ~Piano();  // Pas de definition ici
 
     void loadSounds() override;
     void playNote(const string& note) override;

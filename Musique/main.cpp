@@ -10,19 +10,19 @@
 
 using namespace std;
 
-// Fonction pour jouer une mélodie avec un instrument
+// Fonction pour jouer une melodie avec un instrument
 void playMelody(Instrument* instrument, double speed) {
-    vector<Note> melody = getMelody(instrument);  // Récupère la mélodie
+    vector<Note> melody = getMelody(instrument);  // Recupere la melodie
 
     for (const auto& note : melody) {
         if (note.name != "0") {  // Si la note n'est pas une pause
             instrument->playNote(note.name);  // Joue la note
-            SDL_Delay(note.duration * 1000 * speed);  // Temps de pause ajusté par la vitesse
+            SDL_Delay(note.duration * 1000 * speed);  // Temps de pause ajuste par la vitesse
         }
     }
 }
 
-// Fonction pour jouer de manière manuelle avec les touches
+// Fonction pour jouer de maniere manuelle avec les touches
 void playManual(Instrument* instrument) {
     bool quit = false;
     SDL_Event event;
@@ -41,7 +41,7 @@ void playManual(Instrument* instrument) {
             }
             else if (event.type == SDL_KEYDOWN) {
                 if (event.key.keysym.sym == SDLK_ESCAPE) {
-                    return;  // Retourner au menu de sélection du mode
+                    return;  // Retourner au menu de selection du mode
                 }
                 else {
                     auto it = keyToNote.find(event.key.keysym.sym);
@@ -56,13 +56,13 @@ void playManual(Instrument* instrument) {
 
 // Fonction principale
 int main() {
-    // Initialisation de SDL pour la vidéo et l'audio
+    // Initialisation de SDL pour la video et l'audio
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) {
         cerr << "Erreur SDL_Init: " << SDL_GetError() << endl;
         return -1;
     }
 
-    // Créer une fenêtre SDL
+    // Creer une fenetre SDL
     SDL_Window* window = SDL_CreateWindow("Application Musique",
         SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
         800, 600, SDL_WINDOW_SHOWN);
@@ -90,7 +90,7 @@ int main() {
     }
     Mix_AllocateChannels(128);
     while (true) {
-        // Créer un instrument choisi par l'utilisateur
+        // Creer un instrument choisi par l'utilisateur
         int choix;
         cout << "Bonjour, bienvenue a Musicalau quel instrument voulez-vous essayer ? :\n1. Piano\n2. Guitare\n3. Violon\n(0 pour quitter)" << endl;
         cin >> choix;
@@ -112,7 +112,7 @@ int main() {
         instrument->loadSounds();  // Charger les sons
 
         while (true) {
-            // Sélectionner le mode de jeu
+            // Selectionner le mode de jeu
             int mode;
             cout << "1. Ecouter la melodie\n2. Jouer l'instrument\n(0 pour revenir au choix de l'instrument)" << endl;
             cin >> mode;
@@ -144,7 +144,7 @@ int main() {
     // Nettoyage SDL et Mix
     Mix_CloseAudio();
     Mix_Quit();
-    SDL_DestroyWindow(window);  // Détruire la fenêtre
+    SDL_DestroyWindow(window);  // Detruire la fenetre
     SDL_Quit();
 
     return 0;
